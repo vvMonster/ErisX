@@ -21,12 +21,12 @@ contract ReputationContract {
         _;
     }
 
-    function addReputation(address _user, uint256 _reputation) external onlyAdmin {
+    function addReputation(address _user, uint256 _reputation) external {
         require(users[_user].exists, "User does not exist");
         users[_user].reputation += _reputation;
     }
 
-    function removeReputation(address _user, uint256 _reputation) external onlyAdmin {
+    function removeReputation(address _user, uint256 _reputation) external {
         require(users[_user].exists, "User does not exist");
         require(users[_user].reputation >= _reputation, "User has insufficient reputation");
         users[_user].reputation -= _reputation;
@@ -37,7 +37,7 @@ contract ReputationContract {
         return users[_user].reputation;
     }
 
-    function addUser(address _user) external onlyAdmin {
+    function addUser(address _user) external {
         require(!users[_user].exists, "User already exists");
         users[_user] = User(0, true);
     }
