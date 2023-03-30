@@ -51,6 +51,7 @@ contract MyTaskContract {
         require(!task.completed, "Task is already completed");
         require(task.receiver == address(0), "Task is already assigned");
 
+        reputationContract.addUser(_receiver); 
         task.receiver = _receiver;
     }
 
